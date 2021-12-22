@@ -4,6 +4,8 @@ import ProfileArea from '../components/ProfileArea'
 import { AlurakutMenu, OrkutNostalgicIconSet } from '../lib/AlurakutCommon';
 import RelationsBox from '../components/RelationsBox';
 import RelationsArea from '../styles/relations-area';
+import WelcomeArea from '../styles/welcome-area';
+import WelcomeBox from '../components/WelcomeBox';
 
 interface profileUserDataProps {
   gitHubUser: string
@@ -69,15 +71,17 @@ export default function Home() {
           </Box>
         </ProfileArea>
 
-        <section className="welcome-area">
-          <Box>
-            <h1 className="title">Bem vindo (a)</h1>
-          </Box>
-
-          <Box>
+        <WelcomeArea>
+          <WelcomeBox>
+            <h1 className="welcome-box__title">Bem vindo (a), Vinicius</h1>
+            <p className="welcome-box__todaysluck"><strong>Sorte de hoje:</strong> O melhor profeta do futuro é o passado</p>
             <OrkutNostalgicIconSet />
-          </Box>
-        </section>
+          </WelcomeBox>
+
+          <WelcomeBox>
+            <h2 className="subtitle">O que você deseja fazer?</h2>
+          </WelcomeBox>
+        </WelcomeArea>
 
         <RelationsArea as="section">
           <RelationsBox>
