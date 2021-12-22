@@ -5,8 +5,20 @@ import NextLink from 'next/link';
 const BASE_URL = 'http://alurakut.vercel.app/';
 const v = '1';
 
+interface LinkProps {
+  href: string,
+  children: React.ReactNode,
+}
 
-function Link({ href, children, ...props }) {
+interface AlurakutMenuProps {
+  githubUser: string,
+}
+
+interface AlurakutMenuProfileSidebarProps {
+  githubUser: string,
+}
+
+function Link({ href, children, ...props }: LinkProps) {
   return (
     <NextLink href={href} passHref>
       <a {...props}>
@@ -19,7 +31,7 @@ function Link({ href, children, ...props }) {
 // ================================================================================================================
 // Menu
 // ================================================================================================================
-export function AlurakutMenu({ githubUser }) {
+export function AlurakutMenu({ githubUser }: AlurakutMenuProps) {
   const [isMenuOpen, setMenuState] = React.useState(false);
   return (
     <AlurakutMenu.Wrapper isMenuOpen={isMenuOpen}>
@@ -52,7 +64,7 @@ export function AlurakutMenu({ githubUser }) {
     </AlurakutMenu.Wrapper>
   )
 }
-AlurakutMenu.Wrapper = styled.header`
+AlurakutMenu.Wrapper = styled.header<{ isMenuOpen: boolean }>`
   width: 100%;
   background-color: #308BC5;
 
@@ -167,7 +179,7 @@ AlurakutMenu.Logo = styled.img`
   height: 34px;
 `;
 
-function AlurakutMenuProfileSidebar({ githubUser }) {
+function AlurakutMenuProfileSidebar({ githubUser }: AlurakutMenuProfileSidebarProps) {
   return (
     <div className="alurakutMenuProfileSidebar">
       <div>
@@ -244,7 +256,7 @@ AlurakutProfileSidebarMenuDefault.Wrapper = styled.div`
 // ================================================================================================================
 // OrkutNostalgicIconSet
 // ================================================================================================================
-export function OrkutNostalgicIconSet(props) {
+export function OrkutNostalgicIconSet(props: any) {
   return (
     <OrkutNostalgicIconSet.List>
       {[
@@ -275,7 +287,7 @@ export function OrkutNostalgicIconSet(props) {
             <span className="OrkutNostalgicIconSet__title">
               {name}
             </span>
-            <span className="OrkutNostalgicIconSet__iconComplex" className="OrkutNostalgicIconSet__number" style={{ gridArea: 'number' }}>
+            <span className="OrkutNostalgicIconSet__iconComplex OrkutNostalgicIconSet__number" style={{ gridArea: 'number' }}>
               {[0, 1, 2].map((_, index) => {
                 const isHeartActive = index <= (total - 1);
                 return <img key={`orkut__icon_set__${slug}_img_${index}`} src={`https://alurakut.vercel.app/icons/${icon}.svg`} style={{ marginRight: '2px', opacity: isHeartActive ? 1 : '0.5' }} />
